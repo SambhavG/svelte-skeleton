@@ -28,7 +28,10 @@ jobs:
       #     name: playwright-report
       #     path: playwright-report/
       #     retention-days: 30
-      - run: git config --global user.email "sambhavgupta159@gmail.com"
-      - run: git config --global user.name "SambhavG"
       - name: Deploy
-        run: npm run deploy
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
