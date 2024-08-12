@@ -28,7 +28,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-      - run: npm test
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v1
         with:
