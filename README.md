@@ -6,8 +6,10 @@ This is a skeleton of a svelte project using my preferred workflow. It includes:
 3. Tailwind
 4. Playwright
 5. Shadcn-svelte
-6. A bunch of free sans serif fonts auto included in the head
-7. Automatic deployment to gh-pages when you push to main (includes running playwright and vitest tests)
+6. Lucide icons
+7. A bunch of free sans serif fonts auto included in the head
+8. Automatic deployment to gh-pages when you push to main (includes running playwright and vitest tests) (Note: must manually give write access to GITUB_TOKEN)
+9. Automatic sorting of tailwind styles with prettier
 
 I heavily used [this medium article](https://medium.com/front-end-weekly/ci-cd-with-github-actions-to-deploy-on-github-pages-73e225f8f131) as a guide.
 
@@ -19,6 +21,12 @@ I heavily used [this medium article](https://medium.com/front-end-weekly/ci-cd-w
 5. The playwright tests are somewhat strict, so if they find multiple elements they will throw an error. The default test threw an error when I changed h1 to div since there were multiple divs.
 6. The CI yaml workflow given in the medium article does not install the dependencies necessary for playwright to work; I added them with the Playwright documentation [https://playwright.dev/docs/ci-intro].
 7. The GITHUB_TOKEN token explicitly needs to be given write access to push to the gh-pages branch in settings/actions.
+8. The prerendering will fail the build on the github pages side if there's any routes that don't immediately resolve, so I configured the prerenderer to warn (but not fail) on HTTP errors in svelte.config.js.
+9. In svelte.config.js, we configure the route which the project will be deployed to in production. This must be confgured for resources to fetch properly; also, any route that's fetching a local resource must be prefixed with ${base} and have the line: import { base } from "$app/paths"; at the top
+10. If using a custom favicon that exists in the static folder, the routes in app.html must be prefixed with %sveltekit.assets%
+11. To disable prettier sorting of tailwind styles, remove "prettier-plugin-tailwindcss" from .prettierrc
+12. I had an issue once with the case of app.css, where it changed to uppercase on the github pages side and failed to import in the build in +layout.svelte. I changed +layout.svelte to use App.css to avoid this.
+
 
 
 Below this line is the default sveltekit readme.
