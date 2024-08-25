@@ -25,7 +25,7 @@ I heavily used [this medium article](https://medium.com/front-end-weekly/ci-cd-w
 9. In svelte.config.js, we configure the route which the project will be deployed to in production. This must be confgured for resources to fetch properly; also, any route that's fetching a local resource must be prefixed with ${base} and have the line: import { base } from "$app/paths"; at the top
 10. If using a custom favicon that exists in the static folder, the routes in app.html must be prefixed with %sveltekit.assets%
 11. To disable prettier sorting of tailwind styles, remove "prettier-plugin-tailwindcss" from .prettierrc
-12. I had an issue once with the case of app.css, where it changed to uppercase on the github pages side and failed to import in the build in +layout.svelte. I changed +layout.svelte to use App.css to avoid this.
+12. I had an issue once with the case of app.css, where it changed to uppercase on the github pages side and failed to import in the build in +layout.svelte. You may need to change the import to App.css.
 
 
 
